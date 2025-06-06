@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GunShow.Media</title>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: black;
+      padding: 1rem;
+      text-align: center;
+    }
+    .slideshow {
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .slideshow img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    main {
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      color: #e63946;
+      font-size: 2.5rem;
+      margin: 1rem 0 0.5rem;
+    }
+    .cashapp {
+      font-size: 1.3rem;
+      color: #00d664;
+      font-weight: bold;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 1rem 0;
+    }
+    nav ul li ul li {
+      margin: 0.5rem 0;
+    }
+    nav a {
+      color: #00d664;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 2rem;
+      padding: 1rem 0;
+    }
+    .tagging-note {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 1rem;
+    }
+    .vendor-tags {
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+    .vendor-tags span {
+      background: #333;
+      color: #00d664;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      margin: 0.2rem;
+      display: inline-block;
+    }
+    .install-banner {
+      margin-top: 2rem;
+      background: #1f1f1f;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #444;
+    }
+    .install-banner button {
+      background: #00d664;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="slideshow">
+      <img src="/images/photo1.jpg" alt="Gun Show Crowd">
+      <img src="/images/photo2.jpg" alt="Vendor Booths">
+      <img src="/images/photo3.jpg" alt="Ammo Table">
+      <img src="/images/photo4.jpg" alt="Knives Display">
+      <img src="/images/photo5.jpg" alt="RK Show Vendor">
+    </div>
+  </header>
+  <main>
+    <h1>GunShow.Media</h1>
+    <p>📸 Exclusive RK Show photography curated by Joy Kennedy</p>
+    <p>💳 To license images, send payment via Cash App: <span class="cashapp">$JOYEAUS</span></p>
+    <p>🔒 All images watermarked | Full access unlocked after payment</p>
+    <p>🚀 Site launching with gallery search, vendor tagging, and redirect to product pages</p>
+
+    <nav>
+      <ul>
+        <li><a href="#">Products</a>
+          <ul>
+            <li><a href="#">Pistols</a></li>
+            <li><a href="#">Knives</a></li>
+            <li><a href="#">Ammo</a></li>
+            <li><a href="#">Scopes</a></li>
+            <li><a href="#">Shirts & Patches</a></li>
+            <li><a href="#">Body Armor</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Graphic Design / Flyers & Promos</a></li>
+        <li><a href="#">Joy Graphics (Private Portfolio)</a></li>
+      </ul>
+    </nav>
+
+    <div class="tagging-note">
+      🔖 Images searchable by keyword, vendor name, or product. Downloads will link to purchase or redirect to vendor/influencer pages.
+    </div>
+
+    <div class="vendor-tags">
+      <strong>Vendor Tags:</strong>
+      <span>Specialty Arms II</span>
+      <span>Secy Industries</span>
+      <span>Remington</span>
+      <span>Mossberg</span>
+      <span>Hi-Point Firearms</span>
+    </div>
+
+    <div class="install-banner">
+      <p>📱 Add GunShow.Media to your home screen for quick access!</p>
+      <button onclick="promptInstall()">Add to Home Screen</button>
+      <p>📍 Allow location to get alerts for RK Shows within 30 minutes of you — directions via <a href="https://www.rkshows.com" target="_blank">rkshows.com</a>.</p>
+    </div>
+  </main>
+  <footer>
+    &copy; 2025 GunShow Media. All rights reserved.
+  </footer>
+  <script>
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    function promptInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      }
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const userLat = position.coords.latitude;
+        const userLon = position.coords.longitude;
+
+        const shows = [
+          {
+            name: "Wichita, Kansas Gun Show",
+            date: "July 12–13, 2025",
+            lat: 37.6861,
+            lon: -97.3301,
+            link: "https://gunshowtrader.com/gun-shows/wichita-kansas-gun-show/"
+          },
+          {
+            name: "Topeka Gun Show",
+            date: "July 19–20, 2025",
+            lat: 39.058,
+            lon: -95.673,
+            link: "https://gunshowtrader.com/gun-shows/topeka-ks-gun-show/"
+          }
+        ];
+
+        function getDistance(lat1, lon1, lat2, lon2) {
+          const R = 6371;
+          const dLat = deg2rad(lat2 - lat1);
+          const dLon = deg2rad(lon2 - lon1);
+          const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(lat1)) *
+              Math.cos(deg2rad(lat2)) *
+              Math.sin(dLon / 2) *
+              Math.sin(dLon / 2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          return R * c;
+        }
+
+        function deg2rad(deg) {
+          return deg * (Math.PI / 180);
+        }
+
+        shows.forEach((show) => {
+          const distance = getDistance(userLat, userLon, show.lat, show.lon);
+          if (distance <= 50) {
+            alert(`Upcoming Gun Show Nearby: ${show.name} on ${show.date}. Click OK for directions.`);
+            window.open(show.link, '_blank');
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
